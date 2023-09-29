@@ -13,7 +13,6 @@ class SeriesController extends Controller
     {
         $series=Serie::all();
         $mensagem=$request->session()->get('mensagem.sucesso');
-        $request->session()->forget('mensagem.sucesso');
         //$series=Serie::query()->orderBy('name')->get();
         return view('series.index',compact('series'))->with('mensagem',$mensagem);
     }
@@ -67,7 +66,7 @@ class SeriesController extends Controller
     public function destroy(Serie $series,Request $request)
     {
         Serie::destroy($series->id);
-        $request->session()->put('mensagem.sucesso',"Serie $series->nome deletada com sucesso");
+        $request->session()->flash('mensagem.sucesso',"Serie $series->nome deletada com sucesso");
         return to_route('series.index');
     }
 }
