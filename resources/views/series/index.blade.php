@@ -1,5 +1,12 @@
 <x-layout title="Ver Series">
 <ul>
+
+    @isset($mensagem)
+        <div>
+            <h3>{{$mensagem}}</h3>
+        </div>
+    @endisset
+
     @foreach ($series as $serie)
     <li>{{$serie->nome}}</li>
     
