@@ -28,9 +28,10 @@ class SeriesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request,Serie $series)
     {
         Serie::create($request->all());
+        $request->session()->flash('mensagem.sucesso',"A serie $series->nome foi adicionada com sucesso");
         return to_route('series.index');
     }
 
@@ -47,6 +48,7 @@ class SeriesController extends Controller
      */
     public function edit(Serie $series)
     {
+        dd($series->seasons);
         return view('series.update',compact('series'));
     }
 
@@ -57,6 +59,7 @@ class SeriesController extends Controller
     {
         $series->fill($request->all());
         $series->save();
+        $request->session()->flash('mensagem.sucesso',"A serie $series->nome foi atualizada com sucesso");
         return to_route('series.index');
     }
 
