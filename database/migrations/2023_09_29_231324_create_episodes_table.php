@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedTinyInteger('numero');
+            $table->foreignId('id_seasons')->constrained('seasons','id_seasons');
+
+            //$table->string('cpf');
+            //$table->foreign('cpf')->references('cpf')->on('usuarios');
         });
     }
 
